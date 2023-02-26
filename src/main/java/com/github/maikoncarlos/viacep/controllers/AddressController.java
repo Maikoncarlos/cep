@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "api/viacep")
 @Slf4j
-public class CadastroController {
+public class AddressController {
 
     @Autowired
     CadastroService service;
@@ -25,8 +25,8 @@ public class CadastroController {
 
     @GetMapping(value = "/{cep}")
     public ResponseEntity<EnderecoResponse> buscarEndereco(@PathVariable("cep") String cep){
-        EnderecoEntity entity = service.buscarEnderecoPeloCep(cep);
-        EnderecoResponse response = mapper.entityToDTO(entity);
+        EnderecoEntity entity = this.service.buscarEnderecoPeloCep(cep);
+        EnderecoResponse response = this.mapper.entityToDTO(entity);
         return ResponseEntity.ok().body(response);
     }
 }

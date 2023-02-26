@@ -3,7 +3,7 @@ package com.github.maikoncarlos.viacep.services.entities.response;
 import lombok.Data;
 
 @Data
-public class EnderecoEntity {
+public class AddressEntity {
 
     private String cep;
     private String logradouro;

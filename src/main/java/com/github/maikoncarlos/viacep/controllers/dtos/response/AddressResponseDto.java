@@ -3,7 +3,7 @@ package com.github.maikoncarlos.viacep.controllers.dtos.response;
 import lombok.Data;
 
 @Data
-public class EnderecoResponse {
+public class AddressResponseDto {
 
     private String cep;
     private String logradouro;
