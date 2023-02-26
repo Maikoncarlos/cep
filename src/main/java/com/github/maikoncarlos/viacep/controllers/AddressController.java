@@ -27,6 +27,7 @@ public class AddressController {
     public ResponseEntity<AddressResponseDto> getAddress(@PathVariable("cep") String cep){
         AddressEntity entity = this.service.getAddressByZipcode(cep);
         AddressResponseDto response = this.mapper.entityToDTO(entity);
+        log.info(" RETORNO DO MAPPER {}  : ", response);
         return ResponseEntity.ok().body(response);
     }
 }
