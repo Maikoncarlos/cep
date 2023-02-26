@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class ResponseExceptionsHandler {
 
     @ExceptionHandler(ZipcodeNullException.class)
-    public ResponseEntity<StandardError> dataIntegrityViolation(ZipcodeNullException ex,
+    public ResponseEntity<StandardError> zipcodeNullException(ZipcodeNullException ex,
                                                                 HttpServletRequest request){
         StandardError error = new StandardError(
                 LocalDateTime.now(),
