@@ -1,9 +1,9 @@
 package com.github.maikoncarlos.viacep.controllers;
 
-import com.github.maikoncarlos.viacep.controllers.dtos.response.EnderecoResponse;
-import com.github.maikoncarlos.viacep.controllers.mappers.CadastroMapper;
-import com.github.maikoncarlos.viacep.services.CadastroService;
-import com.github.maikoncarlos.viacep.services.entities.response.EnderecoEntity;
+import com.github.maikoncarlos.viacep.controllers.dtos.response.AddressResponseDto;
+import com.github.maikoncarlos.viacep.controllers.mappers.AddressMapper;
+import com.github.maikoncarlos.viacep.services.AddressService;
+import com.github.maikoncarlos.viacep.services.entities.response.AddressEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddressController {
 
     @Autowired
-    CadastroService service;
+    AddressService service;
     @Autowired
-    CadastroMapper mapper;
+    AddressMapper mapper;
 
     @GetMapping(value = "/{cep}")
-    public ResponseEntity<EnderecoResponse> buscarEndereco(@PathVariable("cep") String cep){
-        EnderecoEntity entity = this.service.buscarEnderecoPeloCep(cep);
-        EnderecoResponse response = this.mapper.entityToDTO(entity);
+    public ResponseEntity<AddressResponseDto> getAddress(@PathVariable("cep") String cep){
+        AddressEntity entity = this.service.getAddressByZipcode(cep);
+        AddressResponseDto response = this.mapper.entityToDTO(entity);
         return ResponseEntity.ok().body(response);
     }
 }

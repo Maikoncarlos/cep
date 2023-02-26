@@ -15,13 +15,13 @@ public class AddressService {
     @Autowired
     CadastroClient client;
 
-    public AddressEntity buscarEnderecoPeloCep(String cep) {
+    public AddressEntity getAddressByZipcode(String cep) {
 
         log.info("COMUNICANDO COM API EXTERNA VIACEP");
         log.info("PESQUISA PELO CEP {} ", cep);
 
         try {
-            AddressEntity enderecoEntity = this.client.buscarEnderecoPeloCep(cep);
+            AddressEntity enderecoEntity = this.client.getingAddressByZipcodeInViaCEP(cep);
             log.info("SUCESSO - RETORNO {}  : ", enderecoEntity);
             return enderecoEntity;
         } catch (FeignException.FeignClientException ex) {

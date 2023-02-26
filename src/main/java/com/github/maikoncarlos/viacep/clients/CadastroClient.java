@@ -1,6 +1,6 @@
 package com.github.maikoncarlos.viacep.clients;
 
-import com.github.maikoncarlos.viacep.services.entities.response.EnderecoEntity;
+import com.github.maikoncarlos.viacep.services.entities.response.AddressEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface CadastroClient {
 
     @GetMapping("${path.openfeing.viacep}")
-    EnderecoEntity buscarEnderecoPeloCep(@PathVariable("cep") String cep);
+    AddressEntity getingAddressByZipcodeInViaCEP(@PathVariable("cep") String cep);
 }
