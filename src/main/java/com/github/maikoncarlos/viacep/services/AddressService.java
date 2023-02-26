@@ -2,7 +2,7 @@ package com.github.maikoncarlos.viacep.services;
 
 import com.github.maikoncarlos.viacep.clients.CadastroClient;
 import com.github.maikoncarlos.viacep.services.entities.response.AddressEntity;
-import com.github.maikoncarlos.viacep.services.exceptions.CepNullException;
+import com.github.maikoncarlos.viacep.services.exceptions.ZipcodeNullException;
 import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class AddressService {
             return enderecoEntity;
         } catch (FeignException.FeignClientException ex) {
             log.error("Cep inválido  : " + ex.getMessage());
-            throw new CepNullException("Cep inválido! {} ", cep);
+            throw new ZipcodeNullException("Cep inválido! " + cep);
         }
     }
 }
