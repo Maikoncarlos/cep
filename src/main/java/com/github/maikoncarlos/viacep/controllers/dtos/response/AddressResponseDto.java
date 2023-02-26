@@ -10,9 +10,7 @@ public class AddressResponseDto {
     private String zipcode;
 
     private String street;
-    @JsonProperty(value = "complemento")
     private String complement;
-    @JsonProperty(value = "bairro")
     private String neighborhood;
     private String locality;
     private String abbreviationCity;

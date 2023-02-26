@@ -13,6 +13,6 @@ public class AddressEntity {
     private String complement;
     @JsonProperty(value = "bairro")
     private String neighborhood;
-    private String locality;
-    private String abbreviationCity;
+    private String localidade;
+    private String uf;
 }
