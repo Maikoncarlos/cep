@@ -1,6 +1,5 @@
 package com.github.maikoncarlos.viacep.controllers.dtos.response;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data

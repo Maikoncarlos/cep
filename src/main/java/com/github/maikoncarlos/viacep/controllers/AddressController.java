@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
 
 @RestController
 @RequestMapping(value = "api/viacep")
@@ -24,10 +27,16 @@ public class AddressController {
     AddressMapper mapper;
 
     @GetMapping(value = "/{cep}")
-    public ResponseEntity<AddressResponseDto> getAddress(@PathVariable("cep") String cep){
-        AddressEntity entity = this.service.getAddressByZipcode(cep);
-        AddressResponseDto response = this.mapper.entityToDTO(entity);
+    public ResponseEntity<AddressResponseDto> getAddress(@PathVariable("cep") String cep) throws ExecutionException, InterruptedException {
+
+        final CompletableFuture<AddressEntity> entity =
+                CompletableFuture.supplyAsync(() -> this.service.getAddressByZipcode(cep));
+        log.info(" RESPONSE DA ASSINCRONO {}  : ", entity);
+        final AddressEntity responseEntityAsync = entity.get();
+        log.info(" RESPONSE DA DEPOIS DA CONVERSAO PARA OBJETO {}  : ", responseEntityAsync);
+        final AddressResponseDto response = this.mapper.entityToDTO(responseEntityAsync);
         log.info(" RETORNO DO MAPPER {}  : ", response);
+
         return ResponseEntity.ok().body(response);
     }
 }
