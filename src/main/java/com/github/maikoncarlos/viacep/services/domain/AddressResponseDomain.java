@@ -1,9 +1,9 @@
-package com.github.maikoncarlos.viacep.controllers.dtos.response;
+package com.github.maikoncarlos.viacep.services.domain;
 
 import lombok.Data;
 
 @Data
-public class AddressResponseDto {
+public class AddressResponseDomain {
 
     private String zipcode;
     private String street;
@@ -11,5 +11,4 @@ public class AddressResponseDto {
     private String neighborhood;
     private String locality;
     private String abbreviationCity;
-
 }
