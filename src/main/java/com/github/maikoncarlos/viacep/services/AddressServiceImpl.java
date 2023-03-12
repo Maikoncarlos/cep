@@ -30,7 +30,7 @@ public class AddressServiceImpl implements AddressService{
 
     private void salvedAddress(AddressResponseEntity responseEntity) {
 
-        AddressResponseEntity addressResponse = this.salvedRepository.save(responseEntity);
+        this.salvedRepository.save(responseEntity);
         log.info("Endereço salvado no Banco de Dados!");
 
     }
