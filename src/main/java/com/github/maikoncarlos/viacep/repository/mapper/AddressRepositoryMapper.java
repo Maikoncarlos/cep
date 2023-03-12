@@ -1,4 +1,4 @@
-package com.github.maikoncarlos.viacep.repository;
+package com.github.maikoncarlos.viacep.repository.mapper;
 
 import com.github.maikoncarlos.viacep.repository.entity.AddressResponseEntity;
 import org.mapstruct.Mapper;

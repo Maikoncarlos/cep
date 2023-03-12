@@ -2,6 +2,7 @@ package com.github.maikoncarlos.viacep.repository;
 
 import com.github.maikoncarlos.viacep.repository.clients.AddressClient;
 import com.github.maikoncarlos.viacep.repository.entity.AddressResponseEntity;
+import com.github.maikoncarlos.viacep.repository.mapper.AddressRepositoryMapper;
 import com.github.maikoncarlos.viacep.services.exceptions.ZipcodeNullException;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
