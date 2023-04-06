@@ -1,8 +1,14 @@
 package com.github.maikoncarlos.viacep.controllers.dtos.response;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@Builder
 public class AddressResponseDto {
 
     private String zipcode;

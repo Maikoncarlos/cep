@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping (value = "api/viacep")
+@RequestMapping(value = "api/viacep")
 @RequiredArgsConstructor
 public class AddressController {
     private final AddressService service;
     private final AddressControllerMapper mapperController;
 
-    @GetMapping (value = "/{cep}")
+    @GetMapping(value = "/{cep}")
     public ResponseEntity<AddressResponseDto> getAddress(@PathVariable ("cep") String zipCode) {
         final AddressResponseDomain responseDomain = this.service.getAddressByZipCode(zipCode);
-        return ResponseEntity.ok().body(this.mapperController.toResponseDto(responseDomain));
+        return ResponseEntity.ok(this.mapperController.toResponseDto(responseDomain));
 
     }
 }
