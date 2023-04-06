@@ -1,6 +1,7 @@
 package com.github.maikoncarlos.viacep.exception;
 
 
+import com.github.maikoncarlos.viacep.services.exceptions.AddressNotFound;
 import com.github.maikoncarlos.viacep.services.exceptions.ZipcodeNullException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +24,17 @@ public class ResponseExceptionsHandler {
                 request.getRequestURI()
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(AddressNotFound.class)
+    public ResponseEntity<StandardError> addressNotFoundException(AddressNotFound ex,
+                                                              HttpServletRequest request){
+        StandardError error = new StandardError(
+                LocalDateTime.now(),
+                HttpStatus.NOT_FOUND.toString(),
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 }
