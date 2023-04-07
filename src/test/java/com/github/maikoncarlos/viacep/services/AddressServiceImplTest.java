@@ -4,7 +4,9 @@ import com.github.maikoncarlos.viacep.repository.AddressRepository;
 import com.github.maikoncarlos.viacep.repository.AddressSalvedRepository;
 import com.github.maikoncarlos.viacep.repository.entity.AddressResponseEntity;
 import com.github.maikoncarlos.viacep.services.domain.AddressResponseDomain;
+import com.github.maikoncarlos.viacep.services.exceptions.AddressNotFound;
 import com.github.maikoncarlos.viacep.services.mapper.AddressServiceMapper;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith (MockitoExtension.class)
@@ -49,7 +52,7 @@ class AddressServiceImplTest {
 
     @Test
     @DisplayName ("deve obter o endereço pelo cep e devolver com sucesso")
-    void getAddressByZipCode() {
+    void getAddressByZipCodeWithSucess() {
         when(addressRepository.getingAddressByZipcodeInViaCEP(ZIPCODE)).thenReturn(addressResponseEntity);
         when(serviceMapper.toDomain(addressResponseEntity)).thenReturn(addressResponseDomain);
 
@@ -60,6 +63,15 @@ class AddressServiceImplTest {
         assertEquals(ZIPCODE, responseDomain.getZipcode());
         assertEquals(STREET, responseDomain.getStreet());
 
+    }
+
+    @Test
+    @DisplayName("deve retornar erro Notfound caso endereço venha nulo")
+    void returnNotFoundWhenAddressNull(){
+        when(addressRepository.getingAddressByZipcodeInViaCEP(anyString()))
+                .thenReturn(AddressResponseEntity.builder().build());
+
+        assertThrows(AddressNotFound.class, ()-> addressService.getAddressByZipCode(anyString()));
     }
 
     private void addressEntity() {
