@@ -1,8 +1,12 @@
 package com.github.maikoncarlos.viacep.services.domain;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class AddressResponseDomain {
 
     private String zipcode;
@@ -11,4 +15,5 @@ public class AddressResponseDomain {
     private String neighborhood;
     private String locality;
     private String abbreviationCity;
+
 }

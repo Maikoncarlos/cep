@@ -16,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith (MockitoExtension.class)
@@ -31,7 +30,6 @@ class AddressServiceImplTest {
     private static final Long ID = 1L;
     @InjectMocks
     private AddressServiceImpl addressService;
-
     @Mock
     private AddressRepository addressRepository;
     @Mock
@@ -52,18 +50,15 @@ class AddressServiceImplTest {
     @Test
     @DisplayName ("deve obter o endereço pelo cep e devolver com sucesso")
     void getAddressByZipCode() {
-        when(addressRepository.getingAddressByZipcodeInViaCEP(anyString())).thenReturn(addressResponseEntity);
+        when(addressRepository.getingAddressByZipcodeInViaCEP(ZIPCODE)).thenReturn(addressResponseEntity);
         when(serviceMapper.toDomain(addressResponseEntity)).thenReturn(addressResponseDomain);
 
-        AddressResponseDomain responseDomain = addressService.getAddressByZipCode(ZIPCODE);
-
-        log.info("responseDomain: {} ", responseDomain);
+        AddressResponseDomain responseDomain = assertDoesNotThrow(() -> addressService.getAddressByZipCode(ZIPCODE));
 
         assertNotNull(responseDomain);
         assertDoesNotThrow(()-> addressRepository.getingAddressByZipcodeInViaCEP(any()));
         assertEquals(ZIPCODE, responseDomain.getZipcode());
         assertEquals(STREET, responseDomain.getStreet());
-
 
     }
 
