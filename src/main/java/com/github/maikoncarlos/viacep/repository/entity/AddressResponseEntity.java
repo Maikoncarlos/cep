@@ -17,7 +17,6 @@ public class AddressResponseEntity {
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
     @Column (name = "id", nullable = false)
     private Long id;
-
     @JsonProperty("cep")
     private String zipcode;
     @JsonProperty("logradouro")
