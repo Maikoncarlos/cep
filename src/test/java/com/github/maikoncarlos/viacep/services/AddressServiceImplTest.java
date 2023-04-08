@@ -62,6 +62,7 @@ class AddressServiceImplTest {
         assertEquals(NEIGHBORTHOOD, responseDomain.getNeighborhood());
         assertEquals(LOCALIDADE, responseDomain.getLocality());
         assertEquals(UF, responseDomain.getAbbreviationCity());
+        assertEquals("", responseDomain.getComplement());
 
         verify(addressRepository, times(1)).getingAddressByZipcodeInViaCEP(eq(ZIPCODE));
         verify(salvedAddressService, times(1)).salvedAddress(eq(addressResponseEntity));

@@ -16,6 +16,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -58,7 +60,12 @@ class AddressControllerTest {
 
         assertNotNull(responseDto);
         assertEquals(HttpStatus.OK, responseDto.getStatusCode());
-        assertEquals(ZIPCODE,responseDto.getBody().getZipcode());
+        assertEquals(ZIPCODE, Objects.requireNonNull(responseDto.getBody()).getZipcode());
+        assertEquals(STREET, Objects.requireNonNull(responseDto.getBody()).getStreet());
+        assertEquals(NEIGHBORTHOOD, Objects.requireNonNull(responseDto.getBody()).getNeighborhood());
+        assertEquals(LOCALITY, Objects.requireNonNull(responseDto.getBody()).getLocality());
+        assertEquals(ABREVIATIONCITY, Objects.requireNonNull(responseDto.getBody()).getAbbreviationCity());
+        assertEquals("", Objects.requireNonNull(responseDto.getBody()).getComplement());
         assertDoesNotThrow(()-> addressController.getAddress(ZIPCODE));
 
 
